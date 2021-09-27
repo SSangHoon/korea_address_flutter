@@ -23,12 +23,7 @@
     var currentScroll = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
     new daum.Postcode({
       oncomplete: function (data) {
-          if (isMobile) {
-              messageHandler.postMessage(JSON.stringify(data));
-          }
-          else {
-              messageHandler(JSON.stringify(data));
-          }
+        messageHandler(JSON.stringify(data));
         element_wrap.style.display = 'none';
         document.body.scrollTop = currentScroll;
       },
