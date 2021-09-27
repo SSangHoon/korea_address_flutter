@@ -9,9 +9,13 @@
 <body>
   <div id="wrap" style="border:1px solid;width:100%;height:100%;margin:5px 0;position:relative"></div>
 
-  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-  <script>
+    <script type="text/javascript">
+        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    </script>
+    
+    <script>
     var element_wrap = document.getElementById('wrap');
     function foldDaumPostcode() {
       element_wrap.style.display = 'none';
@@ -19,7 +23,12 @@
     var currentScroll = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
     new daum.Postcode({
       oncomplete: function (data) {
-        messageHandler(JSON.stringify(data));
+          if (isMobile) {
+              messageHandler.postMessage(JSON.stringify(data));
+          }
+          else {
+              messageHandler(JSON.stringify(data));
+          }
         element_wrap.style.display = 'none';
         document.body.scrollTop = currentScroll;
       },
@@ -30,7 +39,7 @@
       height: '100%'
     }).embed(element_wrap);
 
-  </script>
+    </script>
 </body>
 
 </html>
