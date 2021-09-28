@@ -13,6 +13,10 @@
 
     <script type="text/javascript">
         var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        var webAppFlutterResponse;
+        function setWebAppFlutterResponse(response) {
+            webAppFlutterResponse = response;
+        }
     </script>
     
     <script>
@@ -23,9 +27,14 @@
     var currentScroll = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
     new daum.Postcode({
       oncomplete: function (data) {
-        dartCallBack.postMessage(JSON.stringify(data));
-        element_wrap.style.display = 'none';
-        document.body.scrollTop = currentScroll;
+          if (isMobile) {
+              dartCallBack.postMessage(JSON.stringify(data));
+          }
+          else {
+              webAppFlutterResponse(JSON.stringify(data));
+          }
+          element_wrap.style.display = 'none';
+          document.body.scrollTop = currentScroll;
       },
       onresize: function (size) {
         element_wrap.style.height = size.height + 'px';
