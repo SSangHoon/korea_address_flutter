@@ -14,8 +14,9 @@
     <script type="text/javascript">
         var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
         var webAppFlutterResponse;
-        function setWebAppFlutterResponse(response) {
-            webAppFlutterResponse = response;
+        function setWebAppFlutterResponse(func) {
+            webAppFlutterResponse = func;
+            func("1");
         }
     </script>
     
