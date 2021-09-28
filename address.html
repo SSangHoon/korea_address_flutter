@@ -1,4 +1,14 @@
 <!DOCTYPE html>
+
+<script type="text/javascript">
+    var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    var webAppFlutterResponse;
+    function setWebAppFlutterResponse(func) {
+        webAppFlutterResponse = func;
+        func("1");
+    }
+</script>
+    
 <html lang="en">
 
 <head>
@@ -11,15 +21,6 @@
 
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-    <script type="text/javascript">
-        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-        var webAppFlutterResponse;
-        function setWebAppFlutterResponse(func) {
-            webAppFlutterResponse = func;
-            func("1");
-        }
-    </script>
-    
     <script>
     var element_wrap = document.getElementById('wrap');
     function foldDaumPostcode() {
